@@ -1,7 +1,8 @@
 import logging
 import sqlite3
 
-from telegram import ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import ReplyKeyboardMarkup,\
+    InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.constants import ParseMode
 from telegram.ext import ApplicationBuilder, Application, CommandHandler,\
     CallbackQueryHandler, MessageHandler, filters,  ConversationHandler
