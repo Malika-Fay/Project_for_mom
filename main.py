@@ -51,7 +51,7 @@ async def start(update, context):
     markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=False)
 
     await update.message.reply_html(
-        rf"Здравствуйте, {user.mention_html()}!\nНажмите кнопку меню и задайте вопрос.",
+        f"Здравствуйте, {user.mention_html()}!\nВойдите в меню и нажмите кнопку 'Задать вопрос'",
         reply_markup=markup)
 
 
