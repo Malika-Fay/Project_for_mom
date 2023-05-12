@@ -23,14 +23,13 @@ def get_operators():
         sqlite_connection = sqlite3.connect('db/database.db')
         cursor = sqlite_connection.cursor()
         res = list(cursor.execute(f'SELECT * FROM Operators'))
-        res = {i[0]: i[1] for i in res}
+        res = {i[1]: i[2] for i in res}
         return res
     except sqlite3.Error as error:
         print(error)
     finally:
         if sqlite_connection:
             sqlite_connection.close()
-
 
 def get_companies():
     try:
@@ -66,10 +65,13 @@ async def choose_company(update, context):
     question = update.message.text
 
     keyboard = []
-    print(get_companies())
+    admin = ''
     for key in get_companies():
-        keyboard.append([InlineKeyboardButton(key[0], callback_data=key[0])])
-
+        if key[0] != 'Администратор чата':
+            keyboard.append([InlineKeyboardButton(key[0], callback_data=key[0])])
+        else:
+            admin = key[0]
+    keyboard.append([InlineKeyboardButton(admin, callback_data=admin)])
     markup = InlineKeyboardMarkup(keyboard)
 
     await update.message.reply_html(
